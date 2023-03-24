@@ -8,7 +8,7 @@ Type=notify
 TimeoutStopSec=60
 Environment=GOMAXPROCS=2
 
-ExecStart=%h/bin/rclone mount remote: %h/Stuff/Mount \
+ExecStart=%h/bin/rclone mount drives: %h/Stuff/Mount \
   --config %h/.config/rclone/rclone.conf \
   --use-mmap \
   --dir-cache-time 1000h \
@@ -18,7 +18,7 @@ ExecStart=%h/bin/rclone mount remote: %h/Stuff/Mount \
   --vfs-read-chunk-size 32M \
   --vfs-read-chunk-size-limit 1G
 
-StandardOutput=file:%h/scripts/rclone_vfs_mount.log
+StandardOutput=file:%h/scripts/rclone.log
 ExecStop=/bin/fusermount -uz %h/Stuff/Mount
 Restart=on-failure
 
